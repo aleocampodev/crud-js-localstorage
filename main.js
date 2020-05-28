@@ -17,10 +17,31 @@ const CreateItem = (activity) => {
     return item
 }
 
+const saveDB = (activity) => {
 
-forms.addEventListener('submit', (e) => {
+    localStorage.setItem('routine',JSON.stringify(arrayActivity))
+
+}
+
+const PaintDB = () => {
+    listActivity.innerHTML = '';
+    arrayActivity = JSON.parse(localStorage.getItem('routine'));
+    console.log(arrayActivity)
+}
+
+
+ forms.addEventListener('submit', (e) => {
     e.preventDefault();
     let activityUI = document.querySelector('#activity').value
     console.log(activityUI);
+
+    CreateItem(activityUI);
+
+    saveDB()
+
+    forms.reset();
+
 })
 
+
+document.addEventListener('DOMContentLoaded', PaintDB)
