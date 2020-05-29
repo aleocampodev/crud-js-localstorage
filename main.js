@@ -26,7 +26,31 @@ const saveDB = (activity) => {
 const PaintDB = () => {
     listActivity.innerHTML = '';
     arrayActivity = JSON.parse(localStorage.getItem('routine'));
-    console.log(arrayActivity)
+    
+    if(arrayActivity === null){
+        arrayActivity = [];
+    } else {
+        arrayActivity.forEach(element =>{
+            listActivity.innerHTML += `
+            <div class="alert alert-success" role="alert">
+                <span class="material-icons" clas="float-left mr-3">
+                    accessibility
+                </span>
+                <b>${element.activity}</b> - ${element.state}
+                <span class="float-right">
+                    <span class="material-icons">
+                        done_outline
+                    </span>
+                    <span class="material-icons">
+                        delete_outline
+                    </span>
+                </span>
+            </div>
+            `
+        })
+
+        
+    }
 }
 
 
